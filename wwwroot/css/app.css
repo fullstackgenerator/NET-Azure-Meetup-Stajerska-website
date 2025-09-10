@@ -96,7 +96,13 @@ h1:focus {
     transition: all 0.2s ease-in-out;
 }
 
-.btn-primary:hover {
+.btn-outline-primary {
+    border: 1px solid var(--accent-color);
+    transition: all 0.2s ease-in-out;
+    color: var(--accent-color);
+}
+
+.btn-primary:hover, .btn-outline-primary:hover {
     background: #16a085;
     border-color: #16a085;
     box-shadow: none;
