@@ -65,9 +65,37 @@ h1:focus {
     color: #ffffff;
 }
 
+/* ==========================================================================
+   3. Footer Section
+   ========================================================================== */
+
+.footer-section {
+    background: linear-gradient(135deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
+    padding: 0.3rem 0;
+    border-top: 1px solid var(--border-color);
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+.footer-section p {
+    color: #ffffff;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.footer-section a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.footer-section a:hover {
+    opacity: 0.8;
+}
+
 
 /* ==========================================================================
-   3. Card Styles
+   4. Card Styles
    ========================================================================== */
 
 .card {
@@ -87,7 +115,7 @@ h1:focus {
 
 
 /* ==========================================================================
-   4. Button Styles
+   5. Button Styles
    ========================================================================== */
 
 .btn-primary {
@@ -108,9 +136,14 @@ h1:focus {
     box-shadow: none;
 }
 
+.sessionize {
+    height:20px;
+    margin-top: -5px;
+}
+
 
 /* ==========================================================================
-   5. Other Components
+   6. Other Components
    ========================================================================== */
 
 .map-container iframe {
@@ -124,7 +157,7 @@ h1:focus {
 
 
 /* ==========================================================================
-   6. Responsive Adjustments
+   7. Responsive Adjustments
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -148,7 +181,7 @@ h1:focus {
 
 
 /* ==========================================================================
-   7. Loading Animation
+   8. Loading Animation
    ========================================================================== */
 
 #app {
