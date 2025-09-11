@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using System.Globalization
+@inject HttpClient Http
+@inject IConfiguration Configuration
 
 <!-- Hero Section -->
 <section class="hero-section" xmlns="http://www.w3.org/1999/html">
@@ -62,47 +64,40 @@
                 </div>
             </div>
         </section>
-        @* *@
-        @* <!-- Speaker Section --> *@
-        @* <section class="mb-5"> *@
-        @*     <h2 class="h3 text-primary mb-4 border-bottom pb-2">Speakers</h2> *@
-        @*     <div class="row text-center"> *@
-        @*         <!-- Speaker 1 --> *@
-        @*         <div class="col-lg-4 col-md-6 mb-4"> *@
-        @*             <div class="card speaker-card h-100"> *@
-        @*                 <img src="https://images.pexels.com/photos/1187765/pexels-photo-1187765.jpeg" class="speaker-image card-img-top" alt="Janez Novak"> *@
-        @*                 <div class="card-body"> *@
-        @*                     <h5 class="card-title fw-bold">Janez Novak</h5> *@
-        @*                     <p class="card-text text-muted">Senior architect @@ Techworks</p> *@
-        @*                     <h6 class="card-subtitle mb-2 mt-3 text-primary fw-bold">Building Scalable Applications with Azure Functions</h6> *@
-        @*                 </div> *@
-        @*             </div> *@
-        @*         </div> *@
-        @*         <!-- Speaker 2 --> *@
-        @*         <div class="col-lg-4 col-md-6 mb-4"> *@
-        @*             <div class="card speaker-card h-100"> *@
-        @*                 <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg" class="speaker-image card-img-top" alt="Ana Kolar"> *@
-        @*                 <div class="card-body"> *@
-        @*                     <h5 class="card-title fw-bold">Ana Kolar</h5> *@
-        @*                     <p class="card-text text-muted">Senior developer @@ ClearSolutions</p> *@
-        @*                     <h6 class="card-subtitle mb-2 mt-3 text-primary fw-bold">Modern Web Development with Blazor</h6> *@
-        @*                 </div> *@
-        @*             </div> *@
-        @*         </div> *@
-        @*         <!-- Speaker 3 --> *@
-        @*         <div class="col-lg-4 col-md-6 mb-4"> *@
-        @*             <div class="card speaker-card h-100"> *@
-        @*                 <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg" class="speaker-image card-img-top" alt="Martin Gajšek"> *@
-        @*                 <div class="card-body"> *@
-        @*                     <h5 class="card-title fw-bold">Martin Gajšek</h5> *@
-        @*                     <p class="card-text text-muted">CTO @@ FastTrack</p> *@
-        @*                     <h6 class="card-subtitle mb-2 mt-3 text-primary fw-bold">From Monolith to Microservices: A .NET Journey</h6> *@
-        @*                 </div> *@
-        @*             </div> *@
-        @*         </div> *@
-        @*     </div> *@
-        @* </section> *@
-        @* *@
+        
+        <!-- Speaker Section -->
+
+        
+        @if (sessionizeData?.Speakers?.Count > 0)
+        {
+            <section class="mb-5">
+                <h2 class="h3 text-primary mb-4 border-bottom pb-2">Speakers</h2>
+                <div class="row text-center">
+                    @foreach (var speaker in sessionizeData.Speakers)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card speaker-card h-100">
+                                <img src="@speaker.ProfilePicture" class="speaker-image card-img-top" alt="@speaker.FullName" />
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">@speaker.FullName</h5>
+                                    <p class="card-text text-muted">@speaker.TagLine</p>
+
+                                    @foreach (var session in sessionizeData.Sessions.Where(s => s.Speakers.Contains(speaker.Id)))
+                                    {
+                                        <h6 class="card-subtitle mb-2 mt-3 text-primary fw-bold">@session.Title</h6>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        }
+        else
+        {
+            <p class="text-muted">Speakers will be announced soon. Stay tuned!</p>
+        }
+
         <!-- Agenda Section -->
         <section class="mb-5">
             <div class="row">
@@ -173,3 +168,21 @@
         </div>
     </div>
 </footer>
+
+@code {
+    private SessionizeResponse? sessionizeData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var url = Configuration["Sessionize:ApiUrl"];
+            
+            sessionizeData = await Http.GetFromJsonAsync<SessionizeResponse>(url);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching Sessionize data: {ex.Message}");
+        }
+    }
+}
