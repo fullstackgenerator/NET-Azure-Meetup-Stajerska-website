@@ -235,3 +235,44 @@ h1:focus {
         transform: rotate(990deg);
     }
 }
+
+/* ==========================================================================
+   9. Speaker Section
+   ========================================================================== */
+
+.speaker-card {
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.speaker-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.speaker-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto 15px;
+    border: 4px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.speaker-card .card-body {
+    padding: 1rem 1.5rem;
+}
+
+.speaker-card .card-title {
+    color: var(--text-color);
+}
+
+.speaker-card .card-text {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.speaker-card .card-subtitle {
+    font-size: 1rem;
+}
