@@ -1,0 +1,67 @@
+﻿@page "/history"
+@using System.Globalization
+@using MeetupWebsite.Sessionize
+
+<!-- Hero Section -->
+<section class="hero-section" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 text-center">
+                <h1 class="display-4 fw-bold mb-3">.NET & Azure Meetup Štajerska | Past events</h1>
+                <p class="lead mb-4">Connecting developers and cloud enthusiasts in the Štajerska region</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <main>
+        <!-- Past Event Section -->
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="date-badge text-white rounded-3 p-3 me-4 text-center">
+                                            <div class="h4 mb-0 fw-bold">16</div>
+                                            <div class="small">OCT</div>
+                                        </div>
+                                        <div>
+                                            <h3 class="h5 mb-1">NET & Azure Meetup: 16. October 2025</h3>
+                                            <p class="text-muted mb-0">
+                                                <i class="bi bi-clock me-1"></i> 18:30 - 21:00 CEST
+                                                <i class="bi bi-geo-alt ms-3 me-1"></i>Tehnoloski Park Ptuj
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="d-inline-flex flex-column gap-2">
+                                        <a href="#"
+                                           class="btn btn-primary btn-lg px-4">
+                                            <i class="bi bi-clock-history me-2"></i>View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center footer-link">
+                <p>&copy; @DateTime.Now.Year .NET & Azure Meetup Štajerska. All rights reserved. | Design by <a href="https://github.com/fullstackgenerator" target="_blank" rel="noopener noreferrer">Simon Hojnik</a></p>
+            </div>
+        </div>
+    </div>
+</footer>

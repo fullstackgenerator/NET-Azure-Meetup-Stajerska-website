@@ -114,27 +114,27 @@
                                             {
                                                 <table class="table table-hover">
                                                     <tbody>
-                                                        @foreach (var session in room.Sessions)
-                                                        {
-                                                            <tr>
-                                                                <td>@session.StartsAt.ToString("HH:mm", CultureInfo.InvariantCulture)</td>
-                                                                <td>
-                                                                    <h5>@session.Title</h5>
-                                                                    <div class="text-muted">
-                                                                        @foreach(var speaker in session.Speakers)
-                                                                        {
-                                                                            <span>@speaker.Name</span>
-                                                                        }
-                                                                    </div>
-                                                                    @if (!string.IsNullOrWhiteSpace(session.Description))
+                                                    @foreach (var session in room.Sessions)
+                                                    {
+                                                        <tr>
+                                                            <td>@session.StartsAt.ToString("HH:mm", CultureInfo.InvariantCulture)</td>
+                                                            <td>
+                                                                <h5>@session.Title</h5>
+                                                                <div class="text-muted">
+                                                                    @foreach(var speaker in session.Speakers)
                                                                     {
-                                                                        <p>
-                                                                            @(GetMarkup(session.Description))
-                                                                        </p>
+                                                                        <span>@speaker.Name</span>
                                                                     }
-                                                                </td>
-                                                            </tr>
-                                                        }
+                                                                </div>
+                                                                @if (!string.IsNullOrWhiteSpace(session.Description))
+                                                                {
+                                                                    <p>
+                                                                        @(GetMarkup(session.Description))
+                                                                    </p>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
                                                     </tbody>
                                                 </table>
                                             }
@@ -177,6 +177,31 @@
                 </div>
             </div>
         </section>
+
+
+
+        <!-- Gallery and past events section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3 text-primary mb-4 border-bottom pb-2">Gallery and Past Events</h2>
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="row justify-content-center gx-3">
+                                <div class="col-auto">
+                                    <a href="/gallery" class="btn btn-primary btn-lg px-4">
+                                        <i class="bi bi-image me-2"></i>Gallery</a>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="/history" class="btn btn-primary btn-lg px-4">
+                                        <i class="bi bi-archive me-2"></i>Past events</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 
@@ -190,5 +215,3 @@
         </div>
     </div>
 </footer>
-
-
